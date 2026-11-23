@@ -28,7 +28,11 @@
  <option value="SMK">SMK</option>
  </select>
  <span id="jumlah"></span>
- <a href="{{ route('admin.sekolah.index') }}">Kelola Data</a>
+ <a href="{{ route('admin.sekolah.index') }}">@auth
+ <a href="{{ route('dashboard') }}">Dashboard</a>
+@else
+ <a href="{{ route('login') }}">Masuk</a>
+@endauth</a>
  </header>
  <div id="map"></div>
 
@@ -52,13 +56,17 @@
  const p = fitur.properties;
  const [lng, lat] = fitur.geometry.coordinates;
  layer.bindPopup(`
+ layer.bindPopup(`
  <strong>${esc(p.nama)}</strong><br>
  NPSN: ${esc(p.npsn)}<br>
  ${esc(p.jenjang)} - ${esc(p.status)}<br>
  ${esc(p.alamat)}, ${esc(p.kecamatan)}<br>
  Telp: ${esc(p.telepon) || '-'}<br>
+ Kepala sekolah: ${esc(p.kepala_sekolah) || '-'}<br>
+ Akreditasi: ${esc(p.akreditasi) || '-'}<br>
+ Siswa: ${p.jumlah_siswa ?? '-'} | Guru: ${p.jumlah_guru ?? '-'}<br>
  <small>Koordinat: ${lat}, ${lng}</small>
- `);
+`);
  }
  }).addTo(map);
 

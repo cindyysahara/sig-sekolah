@@ -7,41 +7,40 @@ use Illuminate\Database\Seeder;
 
 class SekolahSeeder extends Seeder
 {
- public function run(): void
- {
- // [npsn, nama, jenjang, status, alamat, kecamatan, telepon, latitude, longitude]
- $data = [
- ['30304086', 'SD Negeri Tanjung Pagar 4', 'SD', 'Negeri',
- 'Jl. Kelayan Besar I RT.03 No. 32', 'Banjarmasin Selatan',
- null, -3.3447500, 114.5993450],
- ['30304199', 'SMP Negeri 3 Banjarmasin', 'SMP', 'Negeri',
- 'Jl. P. Antasari No. 107', 'Banjarmasin Timur',
- '0511-3253813', -3.3280000, 114.6040000],
- ['30315579', 'MAN 2 Kota Banjarmasin', 'SMA', 'Negeri',
- 'Jl. Pramuka Km. 6 RT.20 No. 28, Komplek Semanda', 'Banjarmasin Timur',
- '0511-3258164', -3.3313361, 114.6307093],
- ['30304274', 'SMAS Muhammadiyah 1 Banjarmasin', 'SMA', 'Swasta',
- 'Jl. S. Parman No. 221', 'Banjarmasin Barat',
- '0511-3364795', -3.3061000, 114.5878000],
- ['30304265', 'SMK Muhammadiyah 1 Banjarmasin', 'SMK', 'Swasta',
- 'Jl. S. Parman No. 221', 'Banjarmasin Barat',
- '0511-6710009', -3.3061000, 114.5878000],
- ];
+    public function run(): void
+    {
+        $data = [
+            ['30000001', 'SD Negeri Contoh 1', 'SD', 'Negeri',
+                'Jl. Contoh No. 1', 'Banjarmasin Utara', -3.2950, 114.5900],
+            ['30000002', 'SD Swasta Contoh 2', 'SD', 'Swasta',
+                'Jl. Contoh No. 2', 'Banjarmasin Selatan', -3.3500, 114.5950],
+            ['30000003', 'SMP Negeri Contoh 1', 'SMP', 'Negeri',
+                'Jl. Contoh No. 3', 'Banjarmasin Tengah', -3.3250, 114.5880],
+            ['30000004', 'SMP Swasta Contoh 2', 'SMP', 'Swasta',
+                'Jl. Contoh No. 4', 'Banjarmasin Barat', -3.3200, 114.5700],
+            ['30000005', 'SMA Negeri Contoh 1', 'SMA', 'Negeri',
+                'Jl. Contoh No. 5', 'Banjarmasin Timur', -3.3100, 114.6100],
+            ['30000006', 'SMA Swasta Contoh 2', 'SMA', 'Swasta',
+                'Jl. Contoh No. 6', 'Banjarmasin Tengah', -3.3300, 114.6000],
+            ['30000007', 'SMK Negeri Contoh 1', 'SMK', 'Negeri',
+                'Jl. Contoh No. 7', 'Banjarmasin Selatan', -3.3600, 114.6050],
+            ['30000008', 'SMK Swasta Contoh 2', 'SMK', 'Swasta',
+                'Jl. Contoh No. 8', 'Banjarmasin Utara', -3.2850, 114.6000],
+        ];
 
- foreach ($data as [$npsn, $nama, $jenjang, $status, $alamat, $kecamatan, $telepon, $lat, $lng]) {
- Sekolah::updateOrCreate(
- ['npsn' => $npsn],
- [
- 'nama' => $nama,
- 'jenjang' => $jenjang,
- 'status' => $status,
- 'alamat' => $alamat,
- 'kecamatan' => $kecamatan,
- 'telepon' => $telepon,
- 'latitude' => $lat,
- 'longitude' => $lng,
- ]
- );
- }
- }
+        foreach ($data as $d) {
+            Sekolah::updateOrCreate(
+                ['npsn' => $d[0]],
+                [
+                    'nama' => $d[1],
+                    'jenjang' => $d[2],
+                    'status' => $d[3],
+                    'alamat' => $d[4],
+                    'kecamatan' => $d[5],
+                    'latitude' => $d[6],
+                    'longitude' => $d[7],
+                ]
+            );
+        }
+    }
 }
